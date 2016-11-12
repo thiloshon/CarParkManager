@@ -2,10 +2,9 @@
  * Created by Thiloshon on 12-Nov-16.
  */
 abstract public class Vehicle {
-
-    String iDPlate;
-    String brand;
-    Date date;
+    protected String iDPlate;
+    protected String brand;
+    protected Date date;
 
     public String getiDPlate() {
         return iDPlate;

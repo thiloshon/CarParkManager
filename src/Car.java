@@ -2,8 +2,8 @@
  * Created by Thiloshon on 12-Nov-16.
  */
 public class Car extends Vehicle {
-    int numberOfDoors;
-    String color;
+    private int numberOfDoors;
+    private String color;
 
     public Car(String color, int numberOfDoors, String idPlate, String brand) {
         this.color = color;

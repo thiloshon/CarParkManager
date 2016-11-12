@@ -7,9 +7,9 @@ import java.util.Scanner;
  */
 public class WestminsterCarParkManager implements CarParkManager {
 
-    ArrayList<Vehicle> vehicleArray = new ArrayList<>();
-    int spaceLeft = 20;
-    Scanner sc = new Scanner(System.in);
+    private ArrayList<Vehicle> vehicleArray = new ArrayList<>();
+    private int spaceLeft = 20;
+    private Scanner sc = new Scanner(System.in);
 
 
     @Override
