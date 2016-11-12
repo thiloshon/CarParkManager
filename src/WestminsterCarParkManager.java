@@ -10,6 +10,7 @@ public class WestminsterCarParkManager implements CarParkManager {
     private ArrayList<Vehicle> vehicleArray = new ArrayList<>();
     private int spaceLeft = 20;
     private Scanner sc = new Scanner(System.in);
+   Date Date;
 
 
     @Override
@@ -23,6 +24,19 @@ public class WestminsterCarParkManager implements CarParkManager {
             String idPlate = sc.nextLine();
             System.out.println("Brand Please:");
             String brand = sc.nextLine();
+            System.out.println("Date: (YYYY MM DD)");
+            int year = sc.nextInt();
+            int month = sc.nextInt();
+            int day = sc.nextInt();
+            System.out.println("Time: (HH MM)");
+            int hour = sc.nextInt();
+            int min = sc.nextInt();
+            Date date =null;
+            try {
+                date = Date.newDate(day, hour, min, month, year);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
             switch (type) {
@@ -30,7 +44,7 @@ public class WestminsterCarParkManager implements CarParkManager {
                     if (spaceLeft > 1) {
                         System.out.println("Cargo Volume:");
                         int cargoVolume = sc.nextInt();
-                        vehicleArray.add(new Van(cargoVolume, idPlate, brand));
+                        vehicleArray.add(new Van(cargoVolume, idPlate, brand, date));
                         spaceLeft -= 2;
                     } else {
                         System.out.println("No Space Left");
@@ -43,7 +57,7 @@ public class WestminsterCarParkManager implements CarParkManager {
                     int numberOfDoors = sc.nextInt();
                     System.out.println("Color:");
                     String color = sc.nextLine();
-                    vehicleArray.add(new Car(color, numberOfDoors, idPlate, brand));
+                    vehicleArray.add(new Car(color, numberOfDoors, idPlate, brand, date));
                     spaceLeft--;
 
                 }
@@ -51,7 +65,7 @@ public class WestminsterCarParkManager implements CarParkManager {
                 case "B": {
                     System.out.println("Engine Size:");
                     int engineSize = sc.nextInt();
-                    vehicleArray.add(new Motorbike(engineSize, idPlate, brand));
+                    vehicleArray.add(new Motorbike(engineSize, idPlate, brand, date));
                     spaceLeft--;
                 }
                 break;
