@@ -111,6 +111,8 @@ public class Date {
         value1 += hour * 60;
         value1 += minute;
 
+        java.util.Date datdfsade = new java.util.Date();
+
 
         int value2 = date.year * 525600;
 
