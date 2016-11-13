@@ -44,10 +44,126 @@ public class Date {
         return 0;
     }
 
-    /*Date difference(){
+    int[] difference(Date date) {
+
+        int value1 = year * 525600;
+
+        if (month > 1) {
+            value1 += 44640;
+            if (month > 2) {
+                value1 += 40320;
+                if (month > 3) {
+                    value1 += 44640;
+                    if (month > 4) {
+                        value1 += 43200;
+                        if (month > 5) {
+                            value1 += 44640;
+                            if (month > 6) {
+                                value1 += 43200;
+                                if (month > 7) {
+                                    value1 += 44640;
+                                    if (month > 8) {
+                                        value1 += 44640;
+                                        if (month > 9) {
+                                            value1 += 43200;
+                                            if (month > 10) {
+                                                value1 += 44640;
+                                                if (month > 11) {
+                                                    value1 += 44640;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /*switch (month){
+            case 2: value1+=44640;
+                break;
+            case 3: value1+=40320;
+                break;
+            case 4: value1+=44640;
+                break;
+            case 5: value1+=43200;
+                break;
+            case 6: value1+=44640;
+                break;
+            case 7: value1+=43200;
+                break;
+            case 8: value1+=44640;
+                break;
+            case 9: value1+=44640;
+                break;
+            case 10: value1+=43200;
+                break;
+            case 11: value1+=44640;
+                break;
+            case 12: value1+=44640;
+                break;
+        }*/
+
+        value1 += day * 1440;
+        value1 += hour * 60;
+        value1 += minute;
 
 
+        int value2 = date.year * 525600;
 
-    }*/
+        if (date.month > 1) {
+            value2 += 44640;
+            if (date.month > 2) {
+                value2 += 40320;
+                if (date.month > 3) {
+                    value2 += 44640;
+                    if (date.month > 4) {
+                        value2 += 43200;
+                        if (date.month > 5) {
+                            value2 += 44640;
+                            if (date.month > 6) {
+                                value2 += 43200;
+                                if (date.month > 7) {
+                                    value2 += 44640;
+                                    if (date.month > 8) {
+                                        value2 += 44640;
+                                        if (date.month > 9) {
+                                            value2 += 43200;
+                                            if (date.month > 10) {
+                                                value2 += 44640;
+                                                if (date.month > 11) {
+                                                    value2 += 44640;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        value2 += date.day * 1440;
+        value2 += date.hour * 60;
+        value2 += date.minute;
+
+        int diff = Math.abs(value1 - value2);
+
+        int day = diff / 1440;
+        int hour = (diff % 1440) / 60;
+
+        int[] ans = new int[2];
+        ans[0] = day;
+        ans[1] = hour;
+
+        return ans;
+
+    }
 
 }
