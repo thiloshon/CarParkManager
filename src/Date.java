@@ -24,7 +24,20 @@ public class Date {
 
     }
 
-    public Date(int day, int hour, int minnute, int month, int year) {
+    public Date(int day, int hour, int minnute, int month, int year) throws Exception {
+
+        if (year < 0 || month < 0 || day < 0 || minute < 0 || hour < 0 || month > 12 || minute > 60 || hour > 24 || day > 31) {
+            throw new Exception("Incorrect Date Exception");
+
+        }
+        if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
+            throw new Exception("Incorrect Date Exception");
+        }
+        if (month == 2 && day > 29) {
+            throw new Exception("Incorrect Date Exception");
+        }
+
+
         //if (day > 31) return;
         this.day = day;
         this.hour = hour;

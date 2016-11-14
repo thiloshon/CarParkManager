@@ -17,9 +17,10 @@ public class WestminsterCarParkManager implements CarParkManager {
     public void addVehicle() {
         if (spaceLeft > 0) {
             System.out.println("Which type would you like to add? ( V / C / B )");
+            sc.nextLine();
             String type = sc.nextLine();
-            type.toUpperCase();
-
+            type = type.toUpperCase();
+            System.out.println(type);
             System.out.println("ID Plate Number:");
             String idPlate = sc.nextLine();
             System.out.println("Brand Please:");
@@ -28,12 +29,16 @@ public class WestminsterCarParkManager implements CarParkManager {
             int year = sc.nextInt();
             int month = sc.nextInt();
             int day = sc.nextInt();
+            System.out.println(year+" " +month+" "+day);
+            //System.out.println();
             System.out.println("Time: (HH MM)");
             int hour = sc.nextInt();
             int min = sc.nextInt();
+            System.out.println(hour+" "+min);
+            //Date date = null;
             Date date = null;
             try {
-                date = Date.newDate(day, hour, min, month, year);
+                date =new Date(day, hour, min, month, year);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -73,6 +78,8 @@ public class WestminsterCarParkManager implements CarParkManager {
         } else {
             System.out.println("No Space Left");
         }
+
+        start();
     }
 
 
@@ -93,15 +100,19 @@ public class WestminsterCarParkManager implements CarParkManager {
             System.out.println("Not Found");
         }
 
+        start();
+
     }
 
     @Override
     public void printList() {
-        for (int x = vehicleArray.size(); x >= 0; x--) {
+        for (int x = vehicleArray.size()-1; x >= 0; x--) {
             System.out.println(vehicleArray.get(x).getiDPlate());
             System.out.println(vehicleArray.get(x).getDate());
-            System.out.println(vehicleArray.get(x).getClass());
+            System.out.println(vehicleArray.get(x).getClass().toString().split(" ")[1]);
         }
+
+        start();
     }
 
     @Override
@@ -131,6 +142,7 @@ public class WestminsterCarParkManager implements CarParkManager {
         System.out.println("Vehicle parked last: ");
         System.out.println(vehicleArray.get(vehicleArray.size() - 1).getiDPlate());
 
+        start();
     }
 
     @Override
@@ -152,6 +164,7 @@ public class WestminsterCarParkManager implements CarParkManager {
         if (!check) {
             System.out.println("No Vehicles Found");
         }
+        start();
     }
 
     @Override
@@ -167,7 +180,7 @@ public class WestminsterCarParkManager implements CarParkManager {
 
         Date date = null;
         try {
-            date = Date.newDate(day, hour, min, month, year);
+            date = new Date(day, hour, min, month, year);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -185,6 +198,8 @@ public class WestminsterCarParkManager implements CarParkManager {
             System.out.println(vehicle.getiDPlate() + " " + amount);
 
         }
+
+        start();
     }
 
 
