@@ -1,5 +1,6 @@
 /**
  * Created by Thiloshon on 13-Nov-16.
+ *
  */
 
 /**
@@ -9,7 +10,7 @@
 public class Main {
     public static void main(String[] args) {
         WestminsterCarParkManager manager = new WestminsterCarParkManager();
-        manager.welcomePage(); // To Print Initial University Details
+        manager.welcomePage(); // To Print Initial CarParkManager Details
         manager.start(); // The Option Menus
     }
 }

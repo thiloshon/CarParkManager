@@ -4,49 +4,54 @@ import java.util.Scanner;
 
 /**
  * Created by Thiloshon on 12-Nov-16.
+ *
+ * The CarParkManager which implements the CarParkManager Interface
  */
 public class WestminsterCarParkManager implements CarParkManager {
 
     private ArrayList<Vehicle> vehicleArray = new ArrayList<>();
-    private int spaceLeft = 20;
+    private int spaceLeft = 20; // The capacity of the Vehicle Park
     private Scanner sc = new Scanner(System.in);
-    Date Date;
 
 
+    /**
+     * method to add vehicle
+     * Gets the type of vehicle and creates vehicles instances accordingly.
+     */
     @Override
     public void addVehicle() {
-        if (spaceLeft > 0) {
+        if (spaceLeft > 0) { // space should be greater than 0 for all vehicles
             System.out.println("Which type would you like to add? ( V / C / B )");
             sc.nextLine();
             String type = sc.nextLine();
             type = type.toUpperCase();
-            System.out.println(type);
+
             System.out.println("ID Plate Number:");
             String idPlate = sc.nextLine();
+
             System.out.println("Brand Please:");
             String brand = sc.nextLine();
+
             System.out.println("Date: (YYYY MM DD)");
             int year = sc.nextInt();
             int month = sc.nextInt();
             int day = sc.nextInt();
-            System.out.println(year+" " +month+" "+day);
-            //System.out.println();
+            System.out.println(year + " " + month + " " + day);
+
             System.out.println("Time: (HH MM)");
             int hour = sc.nextInt();
             int min = sc.nextInt();
-            System.out.println(hour+" "+min);
-            //Date date = null;
-            Date date = null;
+            DateTime date = null;
             try {
-                date =new Date(day, hour, min, month, year);
+                date = new DateTime(day, hour, min, month, year);
             } catch (Exception e) {
                 e.printStackTrace();
+                addVehicle();
             }
 
-
             switch (type) {
-                case "V": {
-                    if (spaceLeft > 1) {
+                case "V": { // Van centric inputs
+                    if (spaceLeft > 1) { // space should be greater than 1 for vans
                         System.out.println("Cargo Volume:");
                         int cargoVolume = sc.nextInt();
                         vehicleArray.add(new Van(cargoVolume, idPlate, brand, date));
@@ -57,7 +62,7 @@ public class WestminsterCarParkManager implements CarParkManager {
 
                 }
                 break;
-                case "C": {
+                case "C": { // Car centric inputs
                     System.out.println("Number of Doors:");
                     int numberOfDoors = sc.nextInt();
                     System.out.println("Color:");
@@ -67,7 +72,7 @@ public class WestminsterCarParkManager implements CarParkManager {
 
                 }
                 break;
-                case "B": {
+                case "B": { // Bike centric inputs
                     System.out.println("Engine Size:");
                     int engineSize = sc.nextInt();
                     vehicleArray.add(new Motorbike(engineSize, idPlate, brand, date));
@@ -83,9 +88,13 @@ public class WestminsterCarParkManager implements CarParkManager {
     }
 
 
+    /**
+     * method to delete vehicle
+     */
     @Override
     public void deleteVehicle() {
         System.out.println("Type the ID Plate Number");
+        sc.nextLine();
         String idPlate = sc.nextLine();
 
         Iterator iterator = vehicleArray.iterator();
@@ -97,24 +106,29 @@ public class WestminsterCarParkManager implements CarParkManager {
                 System.out.println("Removed");
                 break;
             }
-            System.out.println("Not Found");
         }
-
         start();
 
     }
 
+
+    /**
+     * method to print list of vehicles
+     */
     @Override
     public void printList() {
-        for (int x = vehicleArray.size()-1; x >= 0; x--) {
+        for (int x = vehicleArray.size() - 1; x >= 0; x--) {
             System.out.println(vehicleArray.get(x).getiDPlate());
-            System.out.println(vehicleArray.get(x).getDate());
+            System.out.println(vehicleArray.get(x).getDate().year + " " + vehicleArray.get(x).getDate().month + " " + vehicleArray.get(x).getDate().day + " " + vehicleArray.get(x).getDate().hour + " " + vehicleArray.get(x).getDate().minute);
             System.out.println(vehicleArray.get(x).getClass().toString().split(" ")[1]);
         }
-
         start();
     }
 
+
+    /**
+     * method to print several statistics of the vehicles
+     */
     @Override
     public void printStatistics() {
         int carCount = 0;
@@ -132,9 +146,9 @@ public class WestminsterCarParkManager implements CarParkManager {
         }
 
         System.out.println("Percentages of vehicles parked:");
-        System.out.println("Car: " + (carCount / vehicleArray.size()) * 100);
-        System.out.println("Van: " + (vanCount / vehicleArray.size()) * 100);
-        System.out.println("Motorbike: " + (bikeCount / vehicleArray.size()) * 100);
+        System.out.println("Car: " + (carCount / (double) vehicleArray.size()) * 100);
+        System.out.println("Van: " + (vanCount / (double) vehicleArray.size()) * 100);
+        System.out.println("Motorbike: " + (bikeCount / (double) vehicleArray.size()) * 100);
 
         System.out.println("Vehicle parked for long: ");
         System.out.println(vehicleArray.get(0).getiDPlate());
@@ -145,6 +159,10 @@ public class WestminsterCarParkManager implements CarParkManager {
         start();
     }
 
+
+    /**
+     * method to return data related to a specific date
+     */
     @Override
     public void dateQuery() {
         System.out.println("Date: (YYYY MM DD)");
@@ -167,6 +185,10 @@ public class WestminsterCarParkManager implements CarParkManager {
         start();
     }
 
+
+    /**
+     * method to calculate the final charges
+     */
     @Override
     public void calculatePrice() {
 
@@ -178,9 +200,9 @@ public class WestminsterCarParkManager implements CarParkManager {
         int hour = sc.nextInt();
         int min = sc.nextInt();
 
-        Date date = null;
+        DateTime date = null;
         try {
-            date = new Date(day, hour, min, month, year);
+            date = new DateTime(day, hour, min, month, year);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -196,7 +218,6 @@ public class WestminsterCarParkManager implements CarParkManager {
             }
 
             System.out.println(vehicle.getiDPlate() + " " + amount);
-
         }
 
         start();
@@ -248,7 +269,6 @@ public class WestminsterCarParkManager implements CarParkManager {
                 System.out.println("Please Choose Your Option Between 1 to 6:");
             }
         } while (option < 1 || option > 6);
-
 
         switch (option) {
             case 1:
