@@ -11,7 +11,7 @@ public class DateTime {
     int minute;
 
     /**
-     * The constructer initiates the values of time
+     * The constructor initiates the values of time
      * @param day The Day of the month
      * @param hour The hour of the day
      * @param minnute The minute of the hour
@@ -159,5 +159,19 @@ public class DateTime {
 
     }
 
+    /**
+     * The method to print date
+     * @return The string representation of the Date
+     */
+    @Override
+    public String toString() {
+        return "DateTime{ " +
+                "Year= " + year +
+                ", Month= " + month +
+                ", Day= " + day +
+                ", Hour= " + hour +
+                ", Minute= " + minute +
+                '}';
+    }
 }
 

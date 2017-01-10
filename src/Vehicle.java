@@ -8,7 +8,7 @@ abstract public class Vehicle {
     protected String brand;
     protected DateTime date;
 
-    public String getiDPlate() {
+    public String getIDPlate() {
         return iDPlate;
     }
 
